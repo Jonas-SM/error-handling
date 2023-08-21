@@ -67,6 +67,7 @@ module.exports = class Shipment {
         // basic response
         let response = {
             status: 200,
+            message: "new shipment has been successfully created",
             missingFields: []
         };
 
@@ -97,6 +98,7 @@ module.exports = class Shipment {
                 if (!(fieldExists)) {
                     response["missingFields"].push(field);
                     response["status"] = 400;
+                    response["message"] = "shipment has not been created due to missing mandatory fields";
                 }
 
             }
@@ -104,6 +106,7 @@ module.exports = class Shipment {
             else if (!(checkKeyExists(this.shipmentDetails, field))) {
                 response["missingFields"].push(field);
                 response["status"] = 400;
+                response["message"] = "shipment has not been created due to missing mandatory fields";
             }
         }
         return response;
